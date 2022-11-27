@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # before_action :find_article, only: [:show, :edit, :update, :destroy]
-  before_action :find_article, except: [:index, :new, :create]
+  before_action :find_article, except: [:index, :new, :create, :user_articles]
 
   def index
     @articles = Article.all
@@ -20,7 +20,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.create(title: params[:article][:title], content: params[:article][:content])
+    # @article = Article.create(title: params[:article][:title], content: params[:article][:content], user: current_user)
+    @article = current_user.articles.create(title: params[:article][:title], content: params[:article][:content], user: current_user)
     render json: @article
   end
 
@@ -38,4 +39,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def user_articles
+    @user = User.find(params[:user_id])
+    render 'articles/index'
+  end
 end

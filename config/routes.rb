@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'articles', to: 'articles#create'
   patch 'articles/:id', to: 'articles#update', as: :article
   post 'articles', to: 'articles#create'
-  delete 'articles:id', to: 'articles#destroy'
+  delete 'articles/:id', to: 'articles#destroy', as: :articles_destoy
+  
+  get 'users/:user_id/articles', to: 'articles#user_articles'
 
 end
