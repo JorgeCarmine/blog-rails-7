@@ -19,6 +19,12 @@
   <body>
     <%= render 'partials/nav' %>
     <div class="container mt-5">
+      <% if notice %>
+        <p class="notice alert alert-primary"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>

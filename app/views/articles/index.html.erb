@@ -1,2 +1,7 @@
-<h1>Mis articulos</h1>
+<% if user_signed_in? %>
+    <h1>Hola <%= current_user.email %></h1>
+<% end %>
+
+<h3>Mis articulos</h3>
+
 <%= render @articles %>
